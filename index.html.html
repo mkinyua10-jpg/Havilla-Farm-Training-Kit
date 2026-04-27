@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Havilla Farm — Digital Training Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --soil: #2C1810;
+    --earth: #5C3D2E;
+    --clay: #8B5E3C;
+    --straw: #D4A853;
+    --harvest: #E8C547;
+    --leaf: #4A7C59;
+    --stem: #2D5A3D;
+    --sky: #C8E6D0;
+    --cream: #F5F0E8;
+    --fog: #EDE8DF;
+    --ink: #1A1208;
+    --mist: #F9F6F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--mist);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--soil);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(74,124,89,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(212,168,83,0.1) 0%, transparent 40%),
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.01) 40px, rgba(255,255,255,0.01) 41px);
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--leaf);
+    border-radius: 50% 50% 50% 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--straw);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 3rem 5rem;
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--straw);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--straw);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    color: var(--harvest);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .hero-quote {
+    border-left: 3px solid var(--leaf);
+    padding: 1rem 1.5rem;
+    background: rgba(255,255,255,0.04);
+    border-radius: 0 8px 8px 0;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(245,240,232,0.85);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--leaf);
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary:hover { background: var(--stem); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.4); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(245,240,232,0.35);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 10;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.35), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse { 0%,100% { opacity: 0.35; } 50% { opacity: 0.8; } }
+
+  /* ── PHASES STRIP ── */
+  .phases-strip {
+    background: var(--earth);
+    padding: 1.5rem 3rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .phases-strip::-webkit-scrollbar { display: none; }
+
+  .phase-chip {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1.2rem;
+    color: rgba(245,240,232,0.5);
+    font-size: 0.78rem;
+    font-weight: 500;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .phase-chip:last-child { border-right: none; }
+  .phase-chip:hover, .phase-chip.active { color: var(--harvest); }
+
+  .phase-chip .num {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--straw);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: calc(100vh - 60px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--fog);
+    border-right: 1px solid rgba(0,0,0,0.07);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--clay) transparent;
+  }
+
+  .sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .sidebar-header h3 {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clay);
+  }
+
+  .sidebar-search {
+    margin-top: 0.75rem;
+    position: relative;
+  }
+
+  .sidebar-search input {
+    width: 100%;
+    padding: 0.5rem 0.75rem 0.5rem 2rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 6px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    outline: none;
+    color: var(--ink);
+  }
+
+  .sidebar-search input:focus { border-color: var(--leaf); }
+
+  .sidebar-search::before {
+    content: '🔍';
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    pointer-events: none;
+  }
+
+  .sidebar-nav { padding: 1rem 0; }
+
+  .nav-section { margin-bottom: 0.25rem; }
+
+  .nav-section-title {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clay);
+    opacity: 0.6;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.55rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    color: rgba(26,18,8,0.65);
+    font-size: 0.82rem;
+    line-height: 1.3;
+  }
+
+  .nav-item:hover { background: rgba(0,0,0,0.03); color: var(--ink); }
+
+  .nav-item.active {
+    border-left-color: var(--leaf);
+    background: rgba(74,124,89,0.08);
+    color: var(--stem);
+    font-weight: 600;
+  }
+
+  .nav-item .phase-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: white;
+    margin-top: 1px;
+  }
+
+  .dot-1 { background: #7B5E7B; }
+  .dot-2 { background: #5B8A6E; }
+  .dot-3 { background: #7A9A5C; }
+  .dot-4 { background: #C4873A; }
+  .dot-5 { background: #C4573A; }
+  .dot-6 { background: #3A7AC4; }
+  .dot-pivot { background: var(--soil); }
+  .dot-plan { background: var(--straw); color: var(--soil) !important; }
+  .dot-intro { background: #888; }
+
+  /* ── CONTENT ── */
+  .content-area {
+    background: white;
+    padding: 3rem 4rem;
+    max-width: 800px;
+  }
+
+  .content-section { display: none; }
+  .content-section.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .section-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section-eyebrow .phase-tag {
+    background: var(--fog);
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 0.15rem 0.6rem;
+    border-radius: 100px;
+    font-size: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--soil);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(26,18,8,0.7);
+    margin-bottom: 2rem;
+    border-left: 3px solid var(--sky);
+    padding-left: 1.25rem;
+    font-weight: 300;
+  }
+
+  .callout {
+    background: var(--fog);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .callout-quote {
+    background: linear-gradient(135deg, var(--soil) 0%, var(--earth) 100%);
+    color: var(--cream);
+    border: none;
+  }
+
+  .callout-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .callout.warning {
+    background: #FEF9EC;
+    border-color: var(--straw);
+    border-left: 4px solid var(--straw);
+  }
+
+  .callout.tip {
+    background: #F0F7F3;
+    border-color: var(--leaf);
+    border-left: 4px solid var(--leaf);
+  }
+
+  .callout-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .callout.tip .callout-label { color: var(--stem); }
+  .callout.warning .callout-label { color: #8B6914; }
+
+  h3.subsection {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--soil);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--fog);
+  }
+
+  p { font-size: 0.92rem; line-height: 1.75; color: rgba(26,18,8,0.75); margin-bottom: 0.75rem; }
+
+  ul.field-list { list-style: none; margin: 0.75rem 0 1.25rem; }
+
+  ul.field-list li {
+    padding: 0.6rem 0 0.6rem 1.5rem;
+    position: relative;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(26,18,8,0.72);
+    border-bottom: 1px solid var(--fog);
+  }
+
+  ul.field-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--leaf);
+    font-weight: 600;
+    font-size: 0.75rem;
+  }
+
+  ul.field-list li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ── STEP CARDS ── */
+  .step-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .step-card {
+    background: var(--fog);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 32px; height: 32px;
+    background: var(--leaf);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .step-card h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--soil); }
+  .step-card p { font-size: 0.82rem; margin: 0; }
+
+  /* ── CHECKLIST ── */
+  .checklist { margin: 1.25rem 0; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--fog);
+    cursor: pointer;
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    background: white;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--leaf);
+    border-color: var(--leaf);
+  }
+
+  .check-item.checked .check-box::after {
+    content: '✓';
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+  .check-item.checked .check-label {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  .check-label { font-size: 0.85rem; line-height: 1.5; color: var(--ink); }
+
+  /* ── PROGRESS ── */
+  .progress-bar-container {
+    background: var(--fog);
+    height: 4px;
+    border-radius: 4px;
+    margin: 0.5rem 0 1.5rem;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--leaf), var(--harvest));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  /* ── DAY PLAN ── */
+  .day-grid { display: grid; gap: 0.75rem; margin: 1.25rem 0; }
+
+  .day-card {
+    border: 1px solid var(--fog);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .day-card:hover { border-color: var(--leaf); }
+
+  .day-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.25rem;
+    background: var(--fog);
+  }
+
+  .day-badge {
+    background: var(--leaf);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .day-title { font-weight: 600; font-size: 0.88rem; color: var(--soil); }
+
+  .day-card-body {
+    padding: 1rem 1.25rem;
+    display: none;
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: rgba(26,18,8,0.72);
+  }
+
+  .day-card.open .day-card-body { display: block; }
+
+  /* ── RESOURCE TABLE ── */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+
+  .resource-card {
+    background: var(--fog);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .resource-card h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--soil);
+    margin-bottom: 0.25rem;
+  }
+
+  .resource-card .url {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--leaf);
+    word-break: break-all;
+  }
+
+  .resource-card p {
+    font-size: 0.75rem;
+    color: rgba(26,18,8,0.55);
+    margin: 0.25rem 0 0;
+  }
+
+  /* ── PROGRESS TRACKER (sidebar bottom) ── */
+  .sidebar-progress {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.07);
+    margin-top: auto;
+  }
+
+  .sidebar-progress h4 {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.75rem;
+  }
+
+  .overall-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .overall-progress .bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .overall-progress .fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--leaf), var(--harvest));
+    border-radius: 10px;
+    transition: width 0.4s;
+  }
+
+  .overall-progress .pct {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--leaf);
+    min-width: 30px;
+    text-align: right;
+  }
+
+  /* ── PHASE INTRO BANNER ── */
+  .phase-banner {
+    background: linear-gradient(135deg, var(--soil), var(--earth));
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-banner::after {
+    content: attr(data-phase);
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+
+  .phase-banner .phase-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--straw);
+    margin-bottom: 0.4rem;
+  }
+
+  .phase-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .phase-banner p {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.65);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .main-layout { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; left: -280px; top: 0; z-index: 100; transition: left 0.3s; }
+    .sidebar.open { left: 0; }
+    .content-area { padding: 2rem 1.5rem; }
+    .hero-content { padding: 2rem 1.5rem 4rem; }
+    .hero-nav { padding: 1.5rem; }
+    .phases-strip { padding: 1rem 1.5rem; }
+    .resource-grid { grid-template-columns: 1fr; }
+    .mobile-menu-btn { display: flex; }
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 200;
+    background: var(--soil);
+    color: white;
+    border: none;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 90;
+  }
+
+  .overlay.show { display: block; }
+
+  /* ── CROP TABLE ── */
+  table.crop-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.82rem;
+  }
+
+  .crop-table th {
+    background: var(--soil);
+    color: var(--cream);
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  .crop-table td {
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--fog);
+    color: rgba(26,18,8,0.72);
+  }
+
+  .crop-table tr:hover td { background: var(--fog); }
+
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+
+  .badge-green { background: #E8F5EC; color: var(--stem); }
+  .badge-amber { background: #FEF6E4; color: #8B6914; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-pattern"></div>
+  <nav class="hero-nav">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <span class="logo-text">Havilla Farm</span>
+    </div>
+    <span class="nav-badge">Training Kit</span>
+  </nav>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Kenya Organic Farming System</div>
+    <h1 class="hero-title">Farm with<br><em>Knowledge,</em><br>Not Guesswork.</h1>
+    <p class="hero-subtitle">A six-phase practical training built from real farm experience — not a classroom. Every lesson was forged through loss, adaptation, and hard-won success on Kenyan soil.</p>
+    <div class="hero-quote">
+      <p>"Farming must be approached with knowledge, systems, and structure. It must be intentional — not accidental."</p>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="goToSection('intro')">Begin Training</button>
+      <button class="btn-secondary" onclick="goToSection('plan')">7-Day Launch Plan</button>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PHASES QUICK NAV -->
+<div class="phases-strip">
+  <div class="phase-chip active" onclick="goToSection('intro')"><span class="num">★</span> Introduction</div>
+  <div class="phase-chip" onclick="goToSection('phase1')"><span class="num">1</span> Foundation</div>
+  <div class="phase-chip" onclick="goToSection('phase2')"><span class="num">2</span> Inputs</div>
+  <div class="phase-chip" onclick="goToSection('phase3')"><span class="num">3</span> Production</div>
+  <div class="phase-chip" onclick="goToSection('phase4')"><span class="num">4</span> Management</div>
+  <div class="phase-chip" onclick="goToSection('phase5')"><span class="num">5</span> Markets</div>
+  <div class="phase-chip" onclick="goToSection('phase6')"><span class="num">6</span> Sustainability</div>
+  <div class="phase-chip" onclick="goToSection('pivot')"><span class="num">↺</span> Pivot</div>
+  <div class="phase-chip" onclick="goToSection('plan')"><span class="num">7</span> Launch Plan</div>
+  <div class="phase-chip" onclick="goToSection('resources')"><span class="num">📚</span> Resources</div>
+</div>
+
+<!-- MAIN -->
+<div class="main-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>Course Contents</h3>
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search topics…" id="searchInput" oninput="filterNav(this.value)">
+      </div>
+    </div>
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="nav-section">
+        <div class="nav-section-title">Start Here</div>
+        <div class="nav-item active" data-section="intro" onclick="goToSection('intro')">
+          <span class="phase-dot dot-intro">★</span>The Story Behind This Training
+        </div>
+        <div class="nav-item" data-section="intro" onclick="goToSection('intro')">
+          <span class="phase-dot dot-intro">★</span>Kenya Farming Reality
+        </div>
+        <div class="nav-item" data-section="intro" onclick="goToSection('intro')">
+          <span class="phase-dot dot-intro">★</span>How to Use This Kit
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Phase 1 — Foundation</div>
+        <div class="nav-item" data-section="phase1" onclick="goToSection('phase1')">
+          <span class="phase-dot dot-1">1</span>Land Assessment
+        </div>
+        <div class="nav-item" data-section="phase1" onclick="goToSection('phase1')">
+          <span class="phase-dot dot-1">1</span>Layout Planning
+        </div>
+        <div class="nav-item" data-section="phase1" onclick="goToSection('phase1')">
+          <span class="phase-dot dot-1">1</span>Budgeting
+        </div>
+        <div class="nav-item" data-section="phase1" onclick="goToSection('phase1')">
+          <span class="phase-dot dot-1">1</span>Business Mindset
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Phase 2 — Build Inputs</div>
+        <div class="nav-item" data-section="phase2" onclick="goToSection('phase2')">
+          <span class="phase-dot dot-2">2</span>Composting
+        </div>
+        <div class="nav-item" data-section="phase2" onclick="goToSection('phase2')">
+          <span class="phase-dot dot-2">2</span>Compost Tea
+        </div>
+        <div class="nav-item" data-section="phase2" onclick="goToSection('phase2')">
+          <span class="phase-dot dot-2">2</span>Natural Pesticides
+        </div>
+        <div class="nav-item" data-section="phase2" onclick="goToSection('phase2')">
+          <span class="phase-dot dot-2">2</span>Seed Saving
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Phase 3 — Production</div>
+        <div class="nav-item" data-section="phase3" onclick="goToSection('phase3')">
+          <span class="phase-dot dot-3">3</span>Crop Selection
+        </div>
+        <div class="nav-item" data-section="phase3" onclick="goToSection('phase3')">
+          <span class="phase-dot dot-3">3</span>Intercropping
+        </div>
+        <div class="nav-item" data-section="phase3" onclick="goToSection('phase3')">
+          <span class="phase-dot dot-3">3</span>Crop Rotation
+        </div>
+        <div class="nav-item" data-section="phase3" onclick="goToSection('phase3')">
+          <span class="phase-dot dot-3">3</span>Intensive Bed Systems
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Phase 4 — Management</div>
+        <div class="nav-item" data-section="phase4" onclick="goToSection('phase4')">
+          <span class="phase-dot dot-4">4</span>Daily Routine
+        </div>
+        <div class="nav-item" data-section="phase4" onclick="goToSection('phase4')">
+          <span class="phase-dot dot-4">4</span>Record Keeping
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Phase 5 — Markets</div>
+        <div class="nav-item" data-section="phase5" onclick="goToSection('phase5')">
+          <span class="phase-dot dot-5">5</span>Market First Rule
+        </div>
+        <div class="nav-item" data-section="phase5" onclick="goToSection('phase5')">
+          <span class="phase-dot dot-5">5</span>Local Market Mapping
+        </div>
+        <div class="nav-item" data-section="phase5" onclick="goToSection('phase5')">
+          <span class="phase-dot dot-5">5</span>Pricing Strategy
+        </div>
+        <div class="nav-item" data-section="phase5" onclick="goToSection('phase5')">
+          <span class="phase-dot dot-5">5</span>Value Addition
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Phase 6 — Sustain</div>
+        <div class="nav-item" data-section="phase6" onclick="goToSection('phase6')">
+          <span class="phase-dot dot-6">6</span>Closed-Loop System
+        </div>
+        <div class="nav-item" data-section="phase6" onclick="goToSection('phase6')">
+          <span class="phase-dot dot-6">6</span>Scaling Safely
+        </div>
+        <div class="nav-item" data-section="phase6" onclick="goToSection('phase6')">
+          <span class="phase-dot dot-6">6</span>Food Security First
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Extra Modules</div>
+        <div class="nav-item" data-section="pivot" onclick="goToSection('pivot')">
+          <span class="phase-dot dot-pivot">↺</span>The Pivot Principle
+        </div>
+        <div class="nav-item" data-section="plan" onclick="goToSection('plan')">
+          <span class="phase-dot dot-plan">7</span>7-Day Launch Plan
+        </div>
+        <div class="nav-item" data-section="resources" onclick="goToSection('resources')">
+          <span class="phase-dot dot-intro">📚</span>References & Resources
+        </div>
+      </div>
+    </nav>
+
+    <!-- PROGRESS -->
+    <div class="sidebar-progress">
+      <h4>Your Progress</h4>
+      <div class="overall-progress">
+        <div class="bar"><div class="fill" id="overallFill" style="width:0%"></div></div>
+        <span class="pct" id="overallPct">0%</span>
+      </div>
+      <p style="font-size:0.72rem;color:rgba(26,18,8,0.45);margin:0;">Check off items in each phase to track progress</p>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content-area">
+
+    <!-- INTRO -->
+    <section class="content-section active" id="sec-intro">
+      <div class="section-eyebrow"><span class="phase-tag">Introduction</span></div>
+      <h1 class="section-title">The Story Behind This Training</h1>
+      <p class="section-intro">This training was not written in a classroom. It was forged on a real farm, through a real venture, with real losses — and hard-won lessons that no textbook could have provided.</p>
+
+      <p>A few years ago, the founder of Havilla Farm ventured into organic farming — specifically coloured capsicums — almost by chance, with very little information and almost no preparation. What followed was a master class in what not to do, and eventually, what to do instead.</p>
+
+      <h3 class="subsection">The Setup — Full of Promise</h3>
+      <p>The venture began with a contract that was never properly verified. Two greenhouses were hired, land near a water source was secured, seeds were purchased, and a capable farmhand joined the team. The crop did exceptionally well. At its peak, they were harvesting 60–70 kilograms of beautiful coloured capsicums every two days.</p>
+
+      <h3 class="subsection">The Crisis — A Market Planning Failure</h3>
+      <p>As harvest approached, the contracted buyer started giving excuses. The market was flooded, they said. They could no longer honour the agreed price. Eventually, they defaulted on the contract entirely. Meanwhile, 60–70 kg was arriving every two days — and buyers could only take 5 kg each.</p>
+      <div class="callout callout-quote">
+        <p>"We produced 70 kilograms every two days. Our buyers could take 5 kilograms each. That was not a farming problem. It was a market planning failure — and it happened before we planted the first seedling."</p>
+      </div>
+
+      <h3 class="subsection">The Pivot Moment — Missed</h3>
+      <p>Nearly 200 kg of capsicums had to be disposed of. In that painful moment, an idea came — solar drying. The idea was there. A contact with an engineer existed. But doubt won, and the pivot never happened.</p>
+      <div class="callout tip">
+        <div class="callout-label">Key Lesson</div>
+        <p style="font-size:0.85rem;margin:0;">Sometimes your recovery and your next opportunity are hidden in what looks like loss. Act on the idea — even imperfectly, even without certainty. The pivot is always better than the waste.</p>
+      </div>
+
+      <h3 class="subsection">The Kenya Farming Reality: What the Data Says</h3>
+      <p>Research consistently shows that Kenyan smallholder farmers do not fail primarily because of poor soil, drought, or bad luck. They fail because of three interconnected gaps:</p>
+      <ul class="field-list">
+        <li><strong>Knowledge gaps</strong> — farming without understanding soil, pests, and systems</li>
+        <li><strong>Market gaps</strong> — growing without confirming buyers or realistic prices</li>
+        <li><strong>Management gaps</strong> — operating without records, budgets, or routines</li>
+      </ul>
+      <p>A landmark 15-year systems comparison trial conducted in Kenya's Central Highlands (Journal of Agricultural and Food Research, 2024) found that organic farming systems can close the yield gap with conventional farming while building long-term soil health. This training is built on that evidence.</p>
+
+      <h3 class="subsection">How to Use This Kit</h3>
+      <div class="step-grid">
+        <div class="step-card"><div class="step-num">1</div><div><h4>Read before you act</h4><p>Work through each phase in sequence. Understanding why a practice matters makes you far more likely to maintain it under pressure.</p></div></div>
+        <div class="step-card"><div class="step-num">2</div><div><h4>Apply to your actual land</h4><p>Use the checklists and questions in each phase to tailor content to your soil type, water access, land size, crops, and market.</p></div></div>
+        <div class="step-card"><div class="step-num">3</div><div><h4>Keep the farm log running</h4><p>Every phase produces an output — a plan, a document, a template — that becomes part of your farm management system.</p></div></div>
+        <div class="step-card"><div class="step-num">4</div><div><h4>Share what you learn</h4><p>This kit works best when used with a group of farmers who support and challenge each other.</p></div></div>
+        <div class="step-card"><div class="step-num">5</div><div><h4>Return to earlier phases</h4><p>Experienced farmers will find that phases they understood before reveal new depth as their farm grows.</p></div></div>
+      </div>
+
+      <div style="margin-top:2rem;display:flex;gap:1rem;">
+        <button class="btn-primary" onclick="goToSection('phase1')">Start Phase 1 →</button>
+      </div>
+    </section>
+
+    <!-- PHASE 1 -->
+    <section class="content-section" id="sec-phase1">
+      <div class="phase-banner" data-phase="1">
+        <div class="phase-num">Phase One</div>
+        <h2>Foundation: Set Up Right or Struggle Later</h2>
+        <p>Every farm that consistently produces food and income does so because of strong foundations laid before the first seed went into the ground.</p>
+      </div>
+
+      <p>Of all the mistakes made in the capsicum venture, perhaps the most fundamental was the absence of a foundation. Going straight from idea to action — no assessment, no plan, no budget — is the single most common reason farms fail before the crop even grows.</p>
+
+      <h3 class="subsection">1.1 Land Assessment — Know What You Have</h3>
+      <p>Before you plan anything, you need an honest understanding of the land you are working with.</p>
+      <div class="checklist" id="check-phase1">
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label"><strong>Size and boundaries</strong> — Measure your land accurately. Know exactly how many square metres or fractions of an acre you have available for cultivation.</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label"><strong>Soil type</strong> — Is it sandy, clay-heavy, loamy, or silty? Pick up a handful and assess: does it crumble (sandy), stick and form ribbons (clay), or fall apart loosely (loamy)?</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label"><strong>Soil pH and fertility</strong> — Get a basic soil test through KALRO offices or an agro-dealer. Know your pH and nutrient levels before you plant anything.</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label"><strong>Water access</strong> — Where is your water source? Is it reliable through dry seasons? Calculate whether it can support the crops you intend to grow.</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label"><strong>Sun and shade</strong> — Observe how sunlight moves across your land through the day. Most vegetables require 6–8 hours of direct sunlight.</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label"><strong>Drainage</strong> — Does water pool after rain? Waterlogged soil kills roots. Address through raised beds, drainage channels, or crop selection.</span></div>
+      </div>
+
+      <h3 class="subsection">1.2 Layout Planning — Design Before You Dig</h3>
+      <p>A well-designed farm layout is not a luxury. It is a decision you live with every day. Good layouts reduce labour, improve water use, reduce disease spread, and allow easy expansion.</p>
+      <ul class="field-list">
+        <li><strong>Crop zones</strong> — Group crops with similar water and nutrient needs together</li>
+        <li><strong>Compost area</strong> — Close enough for easy application, not central enough to cause obstruction</li>
+        <li><strong>Animal space</strong> — Positioned for easy manure collection and proximity to crop beds</li>
+        <li><strong>Pathways</strong> — Always design clear pathways between beds to prevent soil compaction</li>
+        <li><strong>Storage and workspace</strong> — Designate space for tools, harvested produce staging, and input storage</li>
+        <li><strong>Water point placement</strong> — Minimise the distance and labour of watering</li>
+      </ul>
+
+      <h3 class="subsection">1.3 Budgeting — Know Your Numbers Before You Spend</h3>
+      <div class="callout warning">
+        <div class="callout-label">⚠ Critical Warning</div>
+        <p style="font-size:0.85rem;margin:0;">The single most common reason new farmers run out of money before harvest is the absence of a realistic, detailed budget made <em>in advance</em> — not after the first purchase.</p>
+      </div>
+      <ul class="field-list">
+        <li>List every cost you can anticipate, then add 20% for the unexpected</li>
+        <li>Calculate your break-even yield at the expected market price — if that number exceeds what your land can produce, change the plan now</li>
+        <li>Phase your spending to match the farm's development — do not spend everything at the start</li>
+        <li>Track every shilling from day one — the farm log is not optional</li>
+      </ul>
+
+      <h3 class="subsection">1.4 Mindset — Farming Is a Business</h3>
+      <div class="callout callout-quote">
+        <p>"Most farmers don't fail because the crop fails. They fail because they were running a business without a business mindset."</p>
+      </div>
+      <p>Farming as a business and farming as survival produce fundamentally different behaviours. A survival farmer plants what they hope will grow and reacts to whatever the market offers. A business farmer plans what the market needs, calculates the cost, confirms the buyer, and then plants.</p>
+      <p>Shift your thinking now, before you plant. Every seed is an investment. Every kilogram harvested is inventory. Every buyer is a customer. Every shilling spent is a cost that must be recovered with a margin.</p>
+
+      <div style="margin-top:2rem;display:flex;gap:1rem;">
+        <button class="btn-primary" onclick="goToSection('phase2')">Phase 2: Build Inputs →</button>
+      </div>
+    </section>
+
+    <!-- PHASE 2 -->
+    <section class="content-section" id="sec-phase2">
+      <div class="phase-banner" data-phase="2">
+        <div class="phase-num">Phase Two</div>
+        <h2>Build Your Inputs: Zero and Low-Cost Farming</h2>
+        <p>Organic farming's greatest structural advantage is the capacity to produce most of your own inputs from materials already available on the farm.</p>
+      </div>
+
+      <h3 class="subsection">2.1 Composting — The Foundation of Everything</h3>
+      <p>Compost improves soil structure, increases water retention, feeds beneficial soil organisms, and progressively reduces your need for external inputs. It can be made from what most households throw away.</p>
+
+      <p><strong>What to compost:</strong></p>
+      <ul class="field-list">
+        <li>Kitchen waste — vegetable peels, fruit rinds, eggshells, coffee grounds (not cooked food, meat, or dairy)</li>
+        <li>Crop residue — stalks, leaves, plant matter after harvest</li>
+        <li>Chicken and animal manure — one of the most nutrient-dense inputs, free if you have animals</li>
+        <li>Dry leaves and carbon materials — grass cuttings, cardboard (uncoated), straw</li>
+      </ul>
+
+      <div class="step-grid">
+        <div class="step-card"><div class="step-num">1</div><div><h4>Layer green and brown materials</h4><p>Alternate wet 'green' material (kitchen waste, fresh manure) with dry 'brown' material (dry leaves, straw, cardboard).</p></div></div>
+        <div class="step-card"><div class="step-num">2</div><div><h4>Keep it moist, not wet</h4><p>If it smells bad, it is too wet or missing carbon material. Adjust by adding more dry browns.</p></div></div>
+        <div class="step-card"><div class="step-num">3</div><div><h4>Turn every 2–3 weeks</h4><p>Introduce oxygen and accelerate decomposition. Neglected piles take far longer to mature.</p></div></div>
+        <div class="step-card"><div class="step-num">4</div><div><h4>Harvest at 6–12 weeks</h4><p>Compost is ready when it is dark, earthy-smelling, and crumbly — typically 6–12 weeks depending on materials.</p></div></div>
+      </div>
+
+      <h3 class="subsection">2.2 Compost Tea — Liquid Fertilizer from Your Compost</h3>
+      <p>Compost tea delivers nutrients in immediately available form and introduces beneficial microorganisms directly to the root zone or leaf surface.</p>
+      <div class="checklist" id="check-phase2">
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Use non-chlorinated rainwater, or leave tap water to stand 24 hours so chlorine dissipates</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Add compost in a cloth/mesh bag at 1 part compost to 5 parts water</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Stir or agitate daily to aerate for 48 hours</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Remove compost bag; apply the liquid within 4 hours</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Dilute 1:10 with water for foliar spray; apply undiluted to soil for root feeding</span></div>
+      </div>
+
+      <h3 class="subsection">2.3 Natural Pesticides — What You Already Have</h3>
+      <p>Chemical pesticide dependency is both expensive and structurally damaging to organic farming. Effective natural pest management can be built almost entirely from materials available locally: neem leaves, garlic, chilli, wood ash, and fermented plant juice are all proven pest deterrents used by organic farmers across Kenya.</p>
+
+      <h3 class="subsection">2.4 Seed Saving — Breaking the Seed Dependency Cycle</h3>
+      <p>Seed saving reduces one of the biggest recurring costs in smallholder farming. Done correctly, it also gives you locally adapted varieties that perform better in your specific soil and climate over time.</p>
+      <ul class="field-list">
+        <li>Only save from <strong>open-pollinated (OP) or heirloom varieties</strong> — hybrid seeds do not breed true</li>
+        <li>Select seeds from your healthiest, most productive plants — not from diseased or average specimens</li>
+        <li>Allow seeds to fully mature on the plant before harvesting</li>
+        <li>Dry seeds in <strong>shade</strong> (not direct sun, which damages germination) before storing</li>
+        <li>Store in airtight containers with a small sachet of dry ash to absorb moisture. Label with crop name and date</li>
+        <li>Test germination before planting: place 10 seeds on a damp cloth for 5–7 days — fewer than 7 germinating means source fresh seed</li>
+      </ul>
+
+      <div style="margin-top:2rem;">
+        <button class="btn-primary" onclick="goToSection('phase3')">Phase 3: Smart Production →</button>
+      </div>
+    </section>
+
+    <!-- PHASE 3 -->
+    <section class="content-section" id="sec-phase3">
+      <div class="phase-banner" data-phase="3">
+        <div class="phase-num">Phase Three</div>
+        <h2>Smart Production: Grow Right, Not Just Grow</h2>
+        <p>Having a farm and knowing how to grow things is not the same as knowing what to grow, when to grow it, and how to maximise your land's potential.</p>
+      </div>
+
+      <h3 class="subsection">3.1 Crop Selection — Plant for the Market First</h3>
+      <div class="callout warning">
+        <div class="callout-label">⚠ Common Mistake</div>
+        <p style="font-size:0.85rem;margin:0;">Most farmers make crop decisions based on familiarity or imitation. The correct sequence always starts with the market.</p>
+      </div>
+
+      <div class="step-grid">
+        <div class="step-card"><div class="step-num">1</div><div><h4>Confirm your market first</h4><p>Identify what buyers in your area need consistently, at what volumes, and at what price.</p></div></div>
+        <div class="step-card"><div class="step-num">2</div><div><h4>Check soil and climate suitability</h4><p>Consult KALRO extension services or a qualified agronomist before committing to a crop.</p></div></div>
+        <div class="step-card"><div class="step-num">3</div><div><h4>Calculate the numbers</h4><p>Does the potential yield and price cover your costs with a margin? If not, change the crop or the plan.</p></div></div>
+        <div class="step-card"><div class="step-num">4</div><div><h4>Only then plant</h4><p>This sequence saves more farms than any agronomic technique.</p></div></div>
+      </div>
+
+      <p><strong>Crops well-suited to Kenyan smallholder organic production:</strong></p>
+      <table class="crop-table">
+        <thead><tr><th>Crop</th><th>Market Demand</th><th>Value Addition Potential</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Kale (Sukuma Wiki)</td><td><span class="badge badge-green">High</span></td><td><span class="badge badge-amber">Medium</span></td><td>Reliable, daily demand</td></tr>
+          <tr><td>Spinach</td><td><span class="badge badge-green">High</span></td><td><span class="badge badge-amber">Medium</span></td><td>Fast-growing, multiple harvests</td></tr>
+          <tr><td>Tomatoes</td><td><span class="badge badge-green">Very High</span></td><td><span class="badge badge-green">High</span></td><td>Sauce, paste, drying</td></tr>
+          <tr><td>Capsicums (coloured)</td><td><span class="badge badge-amber">Niche</span></td><td><span class="badge badge-green">High</span></td><td>Requires confirmed buyer first</td></tr>
+          <tr><td>African leafy vegetables</td><td><span class="badge badge-green">Growing</span></td><td><span class="badge badge-green">High</span></td><td>Premium in urban markets</td></tr>
+          <tr><td>Climbing beans</td><td><span class="badge badge-green">Steady</span></td><td><span class="badge badge-amber">Medium</span></td><td>Nitrogen-fixing; great for intercropping</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="subsection">3.2 Intercropping — More from the Same Space</h3>
+      <ul class="field-list">
+        <li><strong>Companion planting</strong> — French marigolds among tomatoes repel whiteflies and nematodes (confirmed research, npj Sustainable Agriculture, 2025)</li>
+        <li><strong>Legume intercropping</strong> — Climbing beans alongside maize fix atmospheric nitrogen into the soil, reducing external nitrogen inputs</li>
+        <li><strong>Height diversity</strong> — Tall crops provide partial shade for shorter, shade-tolerant crops, using vertical space efficiently</li>
+        <li><strong>Staggered harvests</strong> — Rapid-growing crops harvested from between slower-growing ones give multiple harvests from one planting cycle</li>
+      </ul>
+
+      <h3 class="subsection">3.3 Crop Rotation — Protect the Soil Over Seasons</h3>
+      <p>Planting the same crop in the same space season after season depletes soil and accumulates crop-specific pests and diseases. A simple rotation sequence:</p>
+      <ul class="field-list">
+        <li>Heavy feeders (maize, kale) should follow legumes which restore nitrogen</li>
+        <li>Root vegetables should follow leafy crops — they benefit from improved soil structure left by leaf-crop roots</li>
+        <li>Allow each distinct crop family to return to the same bed no more than once every 3–4 seasons</li>
+        <li>Record your rotation on your farm plan — without a written record, rotation becomes guesswork within two seasons</li>
+      </ul>
+
+      <h3 class="subsection">3.4 Intensive Bed Systems — Maximum Yield, Minimum Space</h3>
+      <div class="callout tip">
+        <div class="callout-label">✓ Research Backed</div>
+        <p style="font-size:0.85rem;margin:0;">Research consistently shows that intensive beds properly prepared can produce 2–4 times more food per square metre than conventional methods on the same land area.</p>
+      </div>
+      <ul class="field-list">
+        <li>Double-dig beds to 50–60 cm depth for deep root penetration and improved drainage</li>
+        <li>Incorporate compost deeply — at least 20% compost by volume in the top 30 cm</li>
+        <li>Plant at closer spacing when soil preparation is excellent — improved nutrient availability compensates</li>
+        <li><strong>Never walk on your beds</strong> — compacted soil undoes everything deep digging achieves</li>
+        <li>Mulch all bed surfaces to retain moisture, suppress weeds, and continue feeding soil as it breaks down</li>
+      </ul>
+
+      <div style="margin-top:2rem;">
+        <button class="btn-primary" onclick="goToSection('phase4')">Phase 4: Farm Management →</button>
+      </div>
+    </section>
+
+    <!-- PHASE 4 -->
+    <section class="content-section" id="sec-phase4">
+      <div class="phase-banner" data-phase="4">
+        <div class="phase-num">Phase Four</div>
+        <h2>Farm Management: Where Most Farms Fail</h2>
+        <p>Beautiful soil, well-chosen crops, and a market plan are all undone by poor management. This phase is about the discipline that makes everything else work.</p>
+      </div>
+
+      <h3 class="subsection">4.1 The Daily Routine — What Gets Done Every Day</h3>
+      <p>Farms that work well have farmers who show up consistently, follow a routine, and observe carefully. Farms that fail have farmers who visit reactively — when there is a problem to solve rather than before the problem develops.</p>
+      <ul class="field-list">
+        <li><strong>Morning inspection (15–20 min)</strong> — Walk every bed. Look at every plant. Wilting = water stress or root disease. Discolouration = nutrient deficiency or fungal issues. Pest damage caught early costs 10% of what it costs late.</li>
+        <li><strong>Watering</strong> — Water in the morning, not midday (evaporation losses) and not evening (prolonged leaf wetness promotes fungal disease). Always check moisture levels before watering — overwatering kills as effectively as drought.</li>
+        <li><strong>Pest and disease checking</strong> — Learn the specific pests affecting your crops in your area. Ask your KALRO extension officer for a list. Early detection is always cheaper than late treatment.</li>
+        <li><strong>Harvest</strong> — Always harvest in the morning when produce is hydrated and temperatures are lower. Handle carefully — bruising accelerates spoilage and reduces the price you can command.</li>
+        <li><strong>Evening record</strong> — Five minutes at the end of each day: inputs spent, work done, anything observed, quantities harvested. This is not optional.</li>
+      </ul>
+
+      <h3 class="subsection">4.2 Record Keeping — The Numbers That Run Your Farm</h3>
+      <div class="callout callout-quote">
+        <p>"A farm without records is a farm flying blind. You cannot improve what you do not measure. You cannot plan what you cannot see."</p>
+      </div>
+      <p>Your farm log tracks:</p>
+      <div class="checklist" id="check-phase4">
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Daily inputs and their costs (every seed, every amendment, every litre of water if paying for it)</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Labour hours (yours and any hired help)</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Harvest quantities (weighed, not estimated)</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Sales — who you sold to, what quantity, at what price</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Observations — pests, diseases, weather events, what worked and what did not</span></div>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <button class="btn-primary" onclick="goToSection('phase5')">Phase 5: Market First →</button>
+      </div>
+    </section>
+
+    <!-- PHASE 5 -->
+    <section class="content-section" id="sec-phase5">
+      <div class="phase-banner" data-phase="5">
+        <div class="phase-num">Phase Five</div>
+        <h2>Market First: The Lesson Most Farmers Skip</h2>
+        <p>This is the most important phase in the training. It is also the one that is almost entirely absent from conventional farmer training programmes.</p>
+      </div>
+
+      <p>Those programmes teach you how to grow. They do not teach you how to sell. The result is what happened in the capsicum venture — and what happens to thousands of Kenyan farmers every season. Beautiful produce. No market. Or a market that exists, but at a price that makes all the hard work unprofitable.</p>
+
+      <h3 class="subsection">5.1 The Golden Rule — Market First, Always</h3>
+      <div class="callout callout-quote">
+        <p>"Before you select a crop, before you prepare a bed, before you buy a single seed — confirm that a buyer exists for what you intend to produce, at a volume that matches what you can grow, and at a price that covers your costs with a margin."</p>
+      </div>
+
+      <h3 class="subsection">5.2 Local Market Mapping — The Market Is Often Within 5km</h3>
+      <ul class="field-list">
+        <li><strong>Mama mboga networks</strong> — Local vegetable sellers often have consistent demand but inconsistent supply. A reliable supplier who brings quality produce regularly is extremely valuable to them.</li>
+        <li><strong>Kiosks and local shops</strong> — For staple vegetables like kale, spinach, and tomatoes, local kiosks represent a reliable if low-volume market.</li>
+        <li><strong>Schools and institutions</strong> — Primary schools, hospitals, clinics, and government offices have consistent procurement needs and often prefer local suppliers for freshness.</li>
+        <li><strong>Restaurants and hotels</strong> — Growing interest in fresh, locally sourced produce, particularly from health-focused establishments. These buyers pay premium prices for consistent quality.</li>
+        <li><strong>Estate residents</strong> — Door-to-door or regular delivery to a single urban estate can absorb significant volume.</li>
+        <li><strong>WhatsApp groups and social media</strong> — Direct marketing through WhatsApp groups, Facebook, and Instagram is increasingly viable for Kenyan smallholder farmers.</li>
+      </ul>
+
+      <h3 class="subsection">5.3 Pricing — Know Your Cost Before You Set a Price</h3>
+      <div class="callout tip">
+        <div class="callout-label">✓ Pricing Formula</div>
+        <p style="font-size:0.85rem;margin:0;"><strong>Cost per kg</strong> = (total input costs + labour costs + overhead) ÷ total kg harvested<br><br>Add your margin: minimum 30%, ideally 50–80% for specialty or organic produce.</p>
+      </div>
+      <ul class="field-list">
+        <li>Compare your calculated price to the prevailing market price — if yours is higher, reduce costs, increase yield, or change crops</li>
+        <li><strong>Never sell below your cost of production.</strong> One loss-making sale creates the habit of loss-making sales.</li>
+      </ul>
+
+      <h3 class="subsection">5.4 Value Addition — When the Market Is Flooded</h3>
+      <p>Post-harvest losses in Kenya's fruit and vegetable sector reach 30–40% nationally, and up to 50% for some horticultural crops. These losses are not inevitable. They are a management and strategy failure — and they are recoverable.</p>
+      <ul class="field-list">
+        <li><strong>Solar drying</strong> — reduces weight, extends shelf life from days to months, creates a differentiated product at premium prices. Solar dryers can be built locally with low-cost materials.</li>
+        <li><strong>Fermentation and pickling</strong> — traditional preservation with growing urban market interest, particularly for indigenous vegetables</li>
+        <li><strong>Grinding and spice production</strong> — dried chilli, pepper, and other spices ground and packaged represent significant value addition</li>
+        <li><strong>Direct packaging</strong> — simply packaging produce cleanly before sale increases the price you command, particularly in institutional markets</li>
+      </ul>
+
+      <div style="margin-top:2rem;">
+        <button class="btn-primary" onclick="goToSection('phase6')">Phase 6: Build a Sustainable System →</button>
+      </div>
+    </section>
+
+    <!-- PHASE 6 -->
+    <section class="content-section" id="sec-phase6">
+      <div class="phase-banner" data-phase="6">
+        <div class="phase-num">Phase Six</div>
+        <h2>Build a Self-Sustaining System</h2>
+        <p>Phase 6 teaches you to build something more durable — a farm that feeds and sustains itself, reduces its dependency on external inputs, and grows without becoming fragile.</p>
+      </div>
+
+      <h3 class="subsection">6.1 The Closed-Loop System</h3>
+      <p>The ideal organic farm is a closed loop — where outputs from one part of the system become inputs to another. This is a practical design principle that reduces costs, builds resilience, and progressively increases farm productivity without increasing external expenditure.</p>
+      <ul class="field-list">
+        <li>Integrate animals strategically — chickens, rabbits, or goats become fertilizer engines, not just food producers</li>
+        <li>Keep detailed records of manure production and application rates to avoid over-application (which burns plants)</li>
+        <li>Use all crop residue as animal feed, compost material, or mulch — nothing leaves the system as waste if it can re-enter as input</li>
+        <li>Capture rainwater where possible — even a roof, gutter, and storage tank reduce water costs significantly over a dry season</li>
+      </ul>
+
+      <h3 class="subsection">6.2 Scaling — Only When the System Is Stable</h3>
+      <div class="callout warning">
+        <div class="callout-label">⚠ Scaling Warning</div>
+        <p style="font-size:0.85rem;margin:0;">One of the most common and most expensive mistakes in farming is scaling a system that is not yet working. More land, more seeds, and more investment in a broken system produces bigger losses, not bigger profits.</p>
+      </div>
+      <p>Expand only when your current system is consistently producing what you planned, your records show profitability over at least two consecutive seasons, and your market is confirmed to absorb increased volume.</p>
+      <ul class="field-list">
+        <li>Before expanding land, maximise productivity of what you already have — a fully optimised 1/8 acre generates substantial income</li>
+        <li>Before adding a new crop, ensure your existing crops are fully managed and profitable</li>
+        <li>Before hiring more labour, ensure the farm system is generating enough income to cover the cost reliably</li>
+        <li>Scaling market relationships — building trust and volume with existing buyers — is often more valuable than scaling land area</li>
+      </ul>
+
+      <h3 class="subsection">6.3 Food Security First</h3>
+      <p>A farm that produces income but cannot reliably feed the farming household is not yet fully successful. Integrate food security deliberately into your production plan.</p>
+      <ul class="field-list">
+        <li>Allocate a dedicated bed specifically for household consumption — this reduces food expenditure and ensures your family eats fresh produce</li>
+        <li>Grow nutritionally dense crops alongside market crops — African leafy vegetables, legumes, and root vegetables provide household nutrition in lean market periods</li>
+        <li>Build a small reserve from each harvest season — stored grain, dried vegetables, or preserved produce — as a buffer against unexpected crop failures</li>
+      </ul>
+
+      <div style="margin-top:2rem;">
+        <button class="btn-primary" onclick="goToSection('pivot')">The Pivot Principle →</button>
+      </div>
+    </section>
+
+    <!-- PIVOT -->
+    <section class="content-section" id="sec-pivot">
+      <div class="section-eyebrow">Special Module</div>
+      <h1 class="section-title">The Pivot Principle:<br>Turning Loss into Opportunity</h1>
+
+      <p class="section-intro">Every farmer who farms long enough will experience loss. Crop failure. Market collapse. Disease. Drought. Contractual betrayal. These are not failures of character. They are the reality of farming in a variable world.</p>
+
+      <div class="callout callout-quote">
+        <p>"In loss, there is often your next opportunity. The pivot is always better than the waste."</p>
+      </div>
+
+      <p>What distinguishes farmers who build lasting, productive farms from those who give up is not the absence of loss. It is what they do in the moment of loss. The solar dryer idea that came during the capsicum disaster was the correct, obvious response to the situation — 200 kilograms of capsicums going to waste represented raw material, free of charge, ready to be transformed into a dried product with a shelf life of months and a market that was not flooded.</p>
+
+      <p>The pivot did not happen because of a moment of doubt that was given more authority than the idea itself. That is a lesson worth understanding deeply.</p>
+
+      <h3 class="subsection">Pivoting Requires</h3>
+      <div class="step-grid">
+        <div class="step-card"><div class="step-num">1</div><div><h4>Recognise the loss early</h4><p>The farm log makes this possible. Without records, you often discover a loss-making pattern weeks or months too late to recover.</p></div></div>
+        <div class="step-card"><div class="step-num">2</div><div><h4>Refuse to accept waste as the only outcome</h4><p>When a crop is going to waste, the question is not "how bad is this loss?" It is "what can this raw material become?"</p></div></div>
+        <div class="step-card"><div class="step-num">3</div><div><h4>Experiment with imperfect knowledge</h4><p>Most pivots start without a complete plan. A solar dryer built imperfectly still recovers more value than a crop left to rot.</p></div></div>
+        <div class="step-card"><div class="step-num">4</div><div><h4>Act before the opportunity closes</h4><p>200 kg of capsicums have a limited window. The moment to act is when the idea appears — not after the produce is worthless.</p></div></div>
+      </div>
+
+      <p>The pivot principle applies beyond produce. It applies to the entire farm. A crop that fails may reveal that a different crop suits your soil better. A buyer who defaults may push you to build a network of smaller, more reliable buyers that is structurally stronger than a single contract. A season of drought may reveal that water harvesting is the most important investment you can make.</p>
+
+      <div class="callout tip">
+        <div class="callout-label">✓ Remember</div>
+        <p style="font-size:0.85rem;margin:0;">The farmer who takes notes on failure and acts on them is the farmer who builds, over time, the resilient farm that others come to see as a showpiece.</p>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <button class="btn-primary" onclick="goToSection('plan')">Your 7-Day Launch Plan →</button>
+      </div>
+    </section>
+
+    <!-- 7-DAY PLAN -->
+    <section class="content-section" id="sec-plan">
+      <div class="section-eyebrow">Action Plan</div>
+      <h1 class="section-title">Your 7-Day Launch Plan</h1>
+      <p class="section-intro">You have the framework. You have the research. You have the lived experience behind this training. Now it is time to act.</p>
+
+      <div class="day-grid">
+        <div class="day-card" onclick="toggleDay(this)">
+          <div class="day-card-header">
+            <span class="day-badge">Day 1–2</span>
+            <span class="day-title">Write Your Opening Story</span>
+          </div>
+          <div class="day-card-body">Your personal farming experience — including the failures — is your most powerful teaching asset. Write it in your own voice. Honest. Specific. Without softening the difficult parts. The vulnerability is what makes it credible, and credibility is what makes the training land.</div>
+        </div>
+        <div class="day-card" onclick="toggleDay(this)">
+          <div class="day-card-header">
+            <span class="day-badge">Day 3</span>
+            <span class="day-title">Map Phase 1 for Your Specific Land</span>
+          </div>
+          <div class="day-card-body">Conduct your land assessment. Walk every corner. Test your soil. Measure your water source. Draft your farm layout on paper. Calculate your break-even point for the coming season. Don't skip this — it is the foundation everything else builds on.</div>
+        </div>
+        <div class="day-card" onclick="toggleDay(this)">
+          <div class="day-card-header">
+            <span class="day-badge">Day 4</span>
+            <span class="day-title">Build Your Farm Log</span>
+          </div>
+          <div class="day-card-body">Open your spreadsheet or printed log. Record your starting inputs and beginning balance. This is your financial baseline. Every shilling you spend from this day forward goes into the log before it goes anywhere else.</div>
+        </div>
+        <div class="day-card" onclick="toggleDay(this)">
+          <div class="day-card-header">
+            <span class="day-badge">Day 5</span>
+            <span class="day-title">Do Your Market Research</span>
+          </div>
+          <div class="day-card-body">Visit the nearest market, two kiosks, and one institutional buyer. Ask what they need. Ask what volumes they take each week. Ask what they pay and what quality they require. Write it all down. Do not plan your next planting until you have done this step.</div>
+        </div>
+        <div class="day-card" onclick="toggleDay(this)">
+          <div class="day-card-header">
+            <span class="day-badge">Day 6</span>
+            <span class="day-title">Start Your Compost Pile</span>
+          </div>
+          <div class="day-card-body">Gather kitchen waste, dry material, and any available manure. Build your first layer today. This single action begins Phase 2 and starts reducing your input costs immediately. A compost pile started today is fertilizer in 8 weeks.</div>
+        </div>
+        <div class="day-card" onclick="toggleDay(this)">
+          <div class="day-card-header">
+            <span class="day-badge">Day 7</span>
+            <span class="day-title">Share Phase 1 with Three Farmers</span>
+          </div>
+          <div class="day-card-body">Share Phase 1 with three farmers in your network. Ask one question: "What would you add or change?" Real feedback from real farmers improves the training more than any amount of revision in isolation. The community layer is where transformation happens.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <button class="btn-primary" onclick="goToSection('resources')">References & Resources →</button>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section class="content-section" id="sec-resources">
+      <div class="section-eyebrow">References</div>
+      <h1 class="section-title">References & Resources</h1>
+      <p class="section-intro">This training draws on credible, published sources. They are included so that you and the farmers you train can access original data and continue learning independently.</p>
+
+      <h3 class="subsection">Research Sources</h3>
+      <ul class="field-list">
+        <li>Bautze, D. et al. (2024). Closing the crop yield gap between organic and conventional farming systems in Kenya: Long-term trial research. <em>Journal of Agricultural and Food Research</em></li>
+        <li>Borgen Project (2024). Smallholder Farmers in Kenya and Their Challenges. borgenproject.org</li>
+        <li>KIPPRA (2023). Enhancing Market Access Through Digital Technologies Among Smallholder Farmers in Kenya. kippra.or.ke</li>
+        <li>KNBS (2024). National Agriculture Production Report 2023–2024. knbs.or.ke</li>
+        <li>Mugendi, D. et al. (2018). Soil fertility and biodiversity on organic and conventional smallholder farms in Kenya. ScienceDirect</li>
+        <li>NIH / NCBI (2024). Effects of adoption of ecological farming practices on farm income in rural households: Evidence from Central Kenya</li>
+        <li>ReliefWeb / The Conversation — Key Challenges for Kenya in Big Push to Reduce Post-Harvest Losses</li>
+        <li>Sacco Trend Magazine (2024). Post-Harvest Loss Mitigation Measures in Kenya</li>
+        <li>World Bank (2019). Kenya Economic Update: Transforming Agricultural Productivity</li>
+      </ul>
+
+      <h3 class="subsection">Key Contacts in Kenya</h3>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h4>KALRO</h4>
+          <div class="url">kalro.org</div>
+          <p>Soil testing, variety trials, extension services</p>
+        </div>
+        <div class="resource-card">
+          <h4>KEPHIS</h4>
+          <div class="url">kephis.org</div>
+          <p>Seed certification, plant disease identification</p>
+        </div>
+        <div class="resource-card">
+          <h4>KOAN</h4>
+          <div class="url">koan.co.ke</div>
+          <p>Organic certification support, farmer network</p>
+        </div>
+        <div class="resource-card">
+          <h4>Seed Savers Network Kenya</h4>
+          <div class="url">seedsaverskenya.org</div>
+          <p>Open-pollinated and heirloom seed sources</p>
+        </div>
+        <div class="resource-card">
+          <h4>FAO Kenya</h4>
+          <div class="url">fao.org/kenya</div>
+          <p>Agricultural guidelines, training resources</p>
+        </div>
+        <div class="resource-card">
+          <h4>Valstand Consulting</h4>
+          <div class="url">valstandconsulting.com</div>
+          <p>Havilla Farm training, farm setup consulting, organic farming systems</p>
+        </div>
+      </div>
+
+      <div class="callout tip" style="margin-top:2rem;">
+        <div class="callout-label">✓ You've Completed the Training</div>
+        <p style="font-size:0.85rem;margin:0;">Return to earlier phases as your farm grows. The depth you find in Phase 1 at Year 3 is different from the depth you found on Day 1. That is how a training kit becomes a farming companion.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- MOBILE MENU BUTTON -->
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()" id="menuBtn">☰</button>
+<div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+
+<script>
+  let currentSection = 'intro';
+  const totalChecks = document.querySelectorAll('.check-item').length;
+
+  function goToSection(id) {
+    // Hide all
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.phase-chip').forEach(c => c.classList.remove('active'));
+
+    // Show target
+    const sec = document.getElementById('sec-' + id);
+    if (sec) sec.classList.add('active');
+
+    // Activate sidebar items
+    document.querySelectorAll(`[data-section="${id}"]`).forEach(n => n.classList.add('active'));
+
+    // Activate strip
+    const chips = document.querySelectorAll('.phase-chip');
+    const map = { intro: 0, phase1: 1, phase2: 2, phase3: 3, phase4: 4, phase5: 5, phase6: 6, pivot: 7, plan: 8, resources: 9 };
+    if (chips[map[id]]) chips[map[id]].classList.add('active');
+
+    currentSection = id;
+    window.scrollTo({ top: document.querySelector('.phases-strip').offsetTop - 10, behavior: 'smooth' });
+    closeMobileMenu();
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const checked = document.querySelectorAll('.check-item.checked').length;
+    const pct = Math.round((checked / totalChecks) * 100);
+    document.getElementById('overallFill').style.width = pct + '%';
+    document.getElementById('overallPct').textContent = pct + '%';
+  }
+
+  function toggleDay(card) {
+    card.classList.toggle('open');
+  }
+
+  function toggleMobileMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  function filterNav(query) {
+    const items = document.querySelectorAll('.nav-item');
+    query = query.toLowerCase();
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(query) ? '' : 'none';
+    });
+    const sections = document.querySelectorAll('.nav-section');
+    sections.forEach(sec => {
+      const visible = [...sec.querySelectorAll('.nav-item')].some(i => i.style.display !== 'none');
+      sec.style.display = visible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
