@@ -1612,6 +1612,39 @@
       sec.style.display = visible ? '' : 'none';
     });
   }
+<script>
+function goToSection(section) {
+  document.querySelectorAll('.content-section').forEach(sec => {
+    sec.classList.remove('active');
+  });
+
+  const target = document.getElementById('sec-' + section);
+  if (target) target.classList.add('active');
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  updateProgress();
+}
+
+function filterNav(value) {
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach(item => {
+    const text = item.innerText.toLowerCase();
+    item.style.display = text.includes(value.toLowerCase()) ? 'flex' : 'none';
+  });
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.check-item').length;
+  const checked = document.querySelectorAll('.check-item.checked').length;
+
+  const percent = all === 0 ? 0 : Math.round((checked / all) * 100);
+
+  document.getElementById('overallFill').style.width = percent + '%';
+  document.getElementById('overallPct').innerText = percent + '%';
+}
 </script>
+
 </body>
 </html>
